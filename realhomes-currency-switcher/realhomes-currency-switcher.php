@@ -3,8 +3,8 @@
  * Plugin Name:       RealHomes Currency Switcher
  * Plugin URI:        https://themeforest.net/item/real-homes-wordpress-real-estate-theme/5373914
  * Description:       Provides multiple currencies support and currency switching for RealHomes theme.
- * Version:           1.0.9
- * Tested up to:      6.6.0
+ * Version:           1.0.10
+ * Tested up to:      6.7
  * Requires PHP:      7.4
  * Author:            InspiryThemes
  * Author URI:        https://inspirythemes.com/

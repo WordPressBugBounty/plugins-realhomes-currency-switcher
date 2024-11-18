@@ -280,11 +280,11 @@ if ( ! function_exists( 'realhomes_currency_switcher_enabled' ) ) {
 	function realhomes_currency_switcher_enabled() {
 
 		$rcs_settings = get_option( 'rcs_settings' );
-		if ( isset( $rcs_settings['enable_currency_switcher'] ) ) {
+		if ( ! empty( $rcs_settings['enable_currency_switcher'] ) && ! empty( $rcs_settings['app_id'] ) ) {
 			return true;
-		} else {
-			return false;
 		}
+
+		return false;
 	}
 }
 
@@ -371,22 +371,6 @@ if( ! function_exists( 'rcs_get_current_visitor_ip' ) ){
 		else
 			$ipaddress = 'UNKNOWN';
 		return $ipaddress;
-	}
-}
-
-
-function set_vur() {
-	if( ! isset( $_COOKIE['realhomes_current_currency'] ) ){
-
-		$expiry_period = intval( $rcs_settings[ 'switched_currency_expiry' ] );
-		if ( ! $expiry_period ) {
-			$expiry_period = 60 * 60;   // one hour.
-		}
-		$expiry = time() + $expiry_period;
-
-		if ( $currency != null ) {
-			setcookie( 'realhomes_current_currency', $currency, $expiry, COOKIEPATH, COOKIE_DOMAIN );
-		}
 	}
 }
 

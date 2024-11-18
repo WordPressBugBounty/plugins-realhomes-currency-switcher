@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: RealHomes Currency Switcher\n"
-"POT-Creation-Date: 2024-07-23 09:04+0500\n"
+"POT-Creation-Date: 2024-11-18 16:48+0500\n"
 "PO-Revision-Date: 2020-05-20 18:11+0500\n"
 "Last-Translator: \n"
 "Language-Team: InspiryThemes info@inspirythemes.com\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.5\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: realhomes-currency-switcher.php\n"
@@ -23,23 +23,23 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#: admin/class-realhomes-currency-switcher-admin.php:201
-msgid "Unverified Nonce!"
+#: admin/class-realhomes-currency-switcher-admin.php:204
+msgid "Security verification failed, please refresh the page and try again."
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-admin.php:228
+#: admin/class-realhomes-currency-switcher-admin.php:231
 msgid "Failed to update cookie!"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-admin.php:236
+#: admin/class-realhomes-currency-switcher-admin.php:239
 msgid "Invalid Request!"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-admin.php:306
+#: admin/class-realhomes-currency-switcher-admin.php:309
 msgid "Settings"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-admin.php:307
+#: admin/class-realhomes-currency-switcher-admin.php:310
 msgid "Documentation"
 msgstr ""
 
@@ -188,6 +188,14 @@ msgstr ""
 #: admin/class-realhomes-currency-switcher-settings.php:269
 #, php-format
 msgid "For feedback, please provide your %1$s feedback here! %2$s"
+msgstr ""
+
+#: includes/class-realhomes-currency-switcher.php:176
+#, php-format
+msgid ""
+"%1$sCurrency Switcher App ID%2$s is missing in %1$sEasy Real Estate > "
+"Currency Settings%2$s. Please provide the App ID to ensure the plugin "
+"functions correctly on the site."
 msgstr ""
 
 #. Plugin Name of the plugin/theme

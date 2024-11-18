@@ -2,8 +2,8 @@
 Contributors: inspirythemes, saqibsarwar, fahidjavid
 Tags: currency switcher, multi currency, real estate currencies, realhomes
 Requires at least: 6.0
-Tested up to: 6.6.0
-Stable tag: 1.0.9
+Tested up to: 6.7
+Stable tag: 1.0.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,6 +46,13 @@ No, this plugin works only with [RealHomes WordPress real estate theme.](https:/
 1. Currency Switcher Settings
 
 == Changelog ==
+
+= 1.0.10 =
+* Added currency switcher App ID missing notice
+* Fixed an issue to remove warning notices in RealHomes theme
+* Some code refinements
+* Updated language files
+* Tested plugin with WordPress 6.7
 
 = 1.0.9 =
 * Improved entry file information

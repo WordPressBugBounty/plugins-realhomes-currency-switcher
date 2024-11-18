@@ -68,20 +68,23 @@ class Realhomes_Currency_Switcher_Admin {
 		$this->currencies_list_url  = 'http://openexchangerates.org/api/currencies.json';
 		$this->currencies_rates_url = 'http://openexchangerates.org/api/latest.json?app_id=';
 
-		$currencies_last_update = get_option( 'realhomes_currencies_last_update' );
-		// Force update currencies rates if related option is checked.
-		if ( isset( $_POST['rcs_settings']['update_currencies_rates'] ) || empty( $currencies_last_update ) ) { // phpcs:ignore
-			$this->update_currencies_rates();
-		}
+		if ( realhomes_currency_switcher_enabled() ) {
 
-		/*
-		 * Setting up a cron job to update currencies' rates and data autometically
-		 * according to the given interval.
-		 */
-		if ( ! wp_next_scheduled( 'realhomes_update_currencies' ) ) {
-			$rcs_settings    = get_option( 'rcs_settings' );
-			$update_interval = empty( $rcs_settings['update_interval'] ) ? 'daily' : $rcs_settings['update_interval'];
-			wp_schedule_event( time(), $update_interval, 'realhomes_update_currencies' );
+			$currencies_last_update = get_option( 'realhomes_currencies_last_update' );
+			// Force update currencies rates if related option is checked.
+			if ( isset( $_POST['rcs_settings']['update_currencies_rates'] ) || empty( $currencies_last_update ) ) { // phpcs:ignore
+				$this->update_currencies_rates();
+			}
+
+			/*
+			 * Setting up a cron job to update currencies' rates and data autometically
+			 * according to the given interval.
+			 */
+			if ( ! wp_next_scheduled( 'realhomes_update_currencies' ) ) {
+				$rcs_settings    = get_option( 'rcs_settings' );
+				$update_interval = empty( $rcs_settings['update_interval'] ) ? 'daily' : $rcs_settings['update_interval'];
+				wp_schedule_event( time(), $update_interval, 'realhomes_update_currencies' );
+			}
 		}
 	}
 
@@ -198,7 +201,7 @@ class Realhomes_Currency_Switcher_Admin {
 				echo wp_json_encode(
 					array(
 						'success' => false,
-						'message' => esc_html__( 'Unverified Nonce!', 'realhomes-currency-switcher' ),
+						'message' => esc_html__( 'Security verification failed, please refresh the page and try again.', 'realhomes-currency-switcher' ),
 					)
 				);
 				die;

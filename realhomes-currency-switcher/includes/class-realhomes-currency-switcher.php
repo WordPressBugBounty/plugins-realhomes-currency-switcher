@@ -54,6 +54,17 @@ class Realhomes_Currency_Switcher {
 	protected $version;
 
 	/**
+	 * Stores the plugin settings.
+	 *
+	 * This variable holds an array of the plugin's settings.
+	 *
+	 * @since    1.1.0
+	 * @access   protected
+	 * @var      array    $settings  Plugin settings.
+	 */
+	protected $settings;
+
+	/**
 	 * Define the core functionality of the plugin.
 	 *
 	 * Set the plugin name and the plugin version that can be used throughout the plugin.
@@ -63,7 +74,6 @@ class Realhomes_Currency_Switcher {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-
 		if ( defined( 'REALHOMES_CURRENCY_SWITCHER_VERSION' ) ) {
 			$this->version = REALHOMES_CURRENCY_SWITCHER_VERSION;
 		} else {
@@ -76,11 +86,14 @@ class Realhomes_Currency_Switcher {
 			$this->plugin_name = 'realhomes-currency-switcher';
 		}
 
+		$this->settings = get_option( 'rcs_settings' );
+
+		add_action( 'admin_notices', array( $this, 'currency_switcher_app_id_notice' ) );
+
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
-
 	}
 
 	/**
@@ -139,6 +152,39 @@ class Realhomes_Currency_Switcher {
 	}
 
 	/**
+	 * Displays a warning notice on the admin screen if the Currency Switcher App ID is missing.
+	 *
+	 * This function checks if the Currency Switcher is enabled and verifies whether the App ID is provided.
+	 * If the App ID is missing, a dismissible warning notice is shown to the admin, prompting them to complete the Currency Switcher configuration.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @return void
+	 */
+	public function currency_switcher_app_id_notice() {
+		$rcs_settings = $this->settings;
+
+		// Check if the Currency Switcher is enabled and if the App ID is missing
+		if ( ! empty( $rcs_settings['enable_currency_switcher'] ) && empty( $rcs_settings['app_id'] ) ) {
+
+			// Display a dismissible warning notice about the missing Currency Switcher App ID
+			?>
+			<div class="notice notice-warning is-dismissible">
+				<p>
+					<?php
+					printf(
+						esc_html__( '%1$sCurrency Switcher App ID%2$s is missing in %1$sEasy Real Estate > Currency Settings%2$s. Please provide the App ID to ensure the plugin functions correctly on the site.', 'realhomes-currency-switcher' ),
+						'<strong>',
+						'</strong>'
+					);
+					?>
+				</p>
+			</div>
+			<?php
+		}
+	}
+
+	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
 	 * Uses the Realhomes_Currency_Switcher_i18n class in order to set the domain and to register the hook
@@ -148,11 +194,9 @@ class Realhomes_Currency_Switcher {
 	 * @access   private
 	 */
 	private function set_locale() {
-
 		$plugin_i18n = new Realhomes_Currency_Switcher_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
-
 	}
 
 	/**
@@ -163,7 +207,6 @@ class Realhomes_Currency_Switcher {
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
-
 		$plugin_settings = new Realhomes_Currency_Switcher_Settings();
 
 		$this->loader->add_action( 'admin_init', $plugin_settings, 'register_settings' );
@@ -176,7 +219,6 @@ class Realhomes_Currency_Switcher {
 		$this->loader->add_action( 'wp_ajax_switch_currency', $plugin_admin, 'switch_current_currency' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-
 	}
 
 	/**
@@ -187,12 +229,10 @@ class Realhomes_Currency_Switcher {
 	 * @access   private
 	 */
 	private function define_public_hooks() {
-
 		$plugin_public = new Realhomes_Currency_Switcher_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-
 	}
 
 	/**
@@ -234,5 +274,4 @@ class Realhomes_Currency_Switcher {
 	public function get_version() {
 		return $this->version;
 	}
-
 }
