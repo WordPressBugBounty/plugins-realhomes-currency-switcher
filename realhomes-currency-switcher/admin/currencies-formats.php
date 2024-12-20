@@ -190,8 +190,8 @@ if ( ! function_exists( 'realhomes_format_currency_data' ) ) {
 					// Indonesian Rupee.
 					$data[ $currency_code ] = array(
 						'name'          => $currency_data['name'],
-						'symbol'        => '&#8377;',
-						'position'      => 'after',
+						'symbol'        => 'Rp',
+						'position'      => 'before',
 						'decimals'      => 2,
 						'thousands_sep' => '.',
 						'decimals_sep'  => ',',

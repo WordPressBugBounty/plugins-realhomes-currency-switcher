@@ -3,8 +3,8 @@
  * Plugin Name:       RealHomes Currency Switcher
  * Plugin URI:        https://themeforest.net/item/real-homes-wordpress-real-estate-theme/5373914
  * Description:       Provides multiple currencies support and currency switching for RealHomes theme.
- * Version:           1.0.10
- * Tested up to:      6.7
+ * Version:           1.0.11
+ * Tested up to:      6.7.1
  * Requires PHP:      7.4
  * Author:            InspiryThemes
  * Author URI:        https://inspirythemes.com/
@@ -23,7 +23,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Currently plugin version.
-define( 'REALHOMES_CURRENCY_SWITCHER_VERSION', get_plugin_data( __FILE__ )['Version'] );
+define( 'REALHOMES_CURRENCY_SWITCHER_VERSION', rcs_get_plugin_details() );
 
 // Plugin unique identifire.
 define( 'REALHOMES_CURRENCY_SWITCHER_NAME', 'realhomes-currency-switcher' );
@@ -54,6 +54,24 @@ register_deactivation_hook( __FILE__, 'deactivate_realhomes_currency_switcher' )
  * admin-specific hooks, and public-facing site hooks.
  */
 require plugin_dir_path( __FILE__ ) . 'includes/class-realhomes-currency-switcher.php';
+
+/**
+ * Get plugin details safely
+ *
+ * @since 1.0.11
+ *
+ * @param string $key   Key to fetch plugin detail
+ *
+ * @return string|mixed
+ */
+function rcs_get_plugin_details( $key = 'Version' ) {
+	require_once ABSPATH . 'wp-admin/includes/plugin.php';
+
+	// Prevent early translation call by setting $translate to false.
+	$plugin_data = get_plugin_data( __FILE__,false,false );
+
+	return $plugin_data[$key];
+}
 
 /**
  * Begins execution of the plugin.
