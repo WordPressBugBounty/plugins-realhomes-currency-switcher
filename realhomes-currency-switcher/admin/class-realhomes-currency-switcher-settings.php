@@ -29,13 +29,13 @@ if ( ! class_exists( 'Realhomes_Currency_Switcher_Settings' ) ) {
 		public function settings_page_menu() {
 
 			add_submenu_page(
-				'easy-real-estate',
+				'real_homes',
 				esc_html__( 'Currencies Settings', 'realhomes-currency-switcher' ),
 				esc_html__( 'Currencies Settings', 'realhomes-currency-switcher' ),
 				'manage_options',
 				'realhomes-currencies-settings',
 				array( $this, 'render_settings_page' ),
-				11
+                5
 			);
 
 		}

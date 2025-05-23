@@ -173,7 +173,7 @@ class Realhomes_Currency_Switcher {
 				<p>
 					<?php
 					printf(
-						esc_html__( '%1$sCurrency Switcher App ID%2$s is missing in %1$sEasy Real Estate > Currency Settings%2$s. Please provide the App ID to ensure the plugin functions correctly on the site.', 'realhomes-currency-switcher' ),
+						esc_html__( '%1$sCurrency Switcher App ID%2$s is missing in %1$sRealHomes > Currency Settings%2$s. Please provide the App ID to ensure the plugin functions correctly on the site.', 'realhomes-currency-switcher' ),
 						'<strong>',
 						'</strong>'
 					);
@@ -210,7 +210,7 @@ class Realhomes_Currency_Switcher {
 		$plugin_settings = new Realhomes_Currency_Switcher_Settings();
 
 		$this->loader->add_action( 'admin_init', $plugin_settings, 'register_settings' );
-		$this->loader->add_action( 'admin_menu', $plugin_settings, 'settings_page_menu' );
+		$this->loader->add_action( 'admin_menu', $plugin_settings, 'settings_page_menu', 11 );
 
 		$plugin_admin = new Realhomes_Currency_Switcher_Admin( $this->get_plugin_name(), $this->get_version() );
 
