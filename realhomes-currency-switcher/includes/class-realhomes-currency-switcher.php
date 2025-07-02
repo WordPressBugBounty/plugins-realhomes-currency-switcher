@@ -173,7 +173,7 @@ class Realhomes_Currency_Switcher {
 				<p>
 					<?php
 					printf(
-						esc_html__( '%1$sCurrency Switcher App ID%2$s is missing in %1$sRealHomes > Currency Settings%2$s. Please provide the App ID to ensure the plugin functions correctly on the site.', 'realhomes-currency-switcher' ),
+						esc_html__( '%1$sCurrency Switcher App ID%2$s is missing in %1$sRealHomes > Currency Settings%2$s. Please provide the App ID to ensure the plugin functions correctly on the site.', RHCS_TEXT_DOMAIN ),
 						'<strong>',
 						'</strong>'
 					);

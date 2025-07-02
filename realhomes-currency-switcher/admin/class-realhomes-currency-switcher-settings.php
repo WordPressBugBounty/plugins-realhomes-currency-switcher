@@ -30,8 +30,8 @@ if ( ! class_exists( 'Realhomes_Currency_Switcher_Settings' ) ) {
 
 			add_submenu_page(
 				'real_homes',
-				esc_html__( 'Currencies Settings', 'realhomes-currency-switcher' ),
-				esc_html__( 'Currencies Settings', 'realhomes-currency-switcher' ),
+				esc_html__( 'Currencies Settings', RHCS_TEXT_DOMAIN ),
+				esc_html__( 'Currencies Settings', RHCS_TEXT_DOMAIN ),
 				'manage_options',
 				'realhomes-currencies-settings',
 				array( $this, 'render_settings_page' ),
@@ -53,7 +53,7 @@ if ( ! class_exists( 'Realhomes_Currency_Switcher_Settings' ) ) {
 			<div id="realhomes-settings-wrap">
 				<form method="post" action="options.php">
                     <header class="settings-header">
-                        <h1><?php esc_html_e( 'RealHomes Currency Switcher Settings', 'realhomes-currency-switcher' ); ?><span class="current-version-tag"><?php echo REALHOMES_CURRENCY_SWITCHER_VERSION; ?></span></h1>
+                        <h1><?php esc_html_e( 'RealHomes Currency Switcher Settings', RHCS_TEXT_DOMAIN ); ?><span class="current-version-tag"><?php echo REALHOMES_CURRENCY_SWITCHER_VERSION; ?></span></h1>
                         <p class="credit">
                             <a class="logo-wrap" href="https://themeforest.net/item/real-homes-wordpress-real-estate-theme/5373914?aid=inspirythemes" target="_blank">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="29" width="29" viewBox="0 0 36 41">
@@ -94,67 +94,67 @@ if ( ! class_exists( 'Realhomes_Currency_Switcher_Settings' ) ) {
                                 <!-- Currency switcher enable disable -->
                                 <tr>
                                     <th scope="row">
-				                        <?php esc_html_e( 'Currency Switcher', 'realhomes-currency-switcher' ); ?>
+				                        <?php esc_html_e( 'Currency Switcher', RHCS_TEXT_DOMAIN ); ?>
                                     </th>
                                     <td>
 				                        <?php
 				                        $enable_currency_switcher = ! empty( $rcs_settings['enable_currency_switcher'] ) ? $rcs_settings['enable_currency_switcher'] : '';
 				                        ?>
                                         <input id="rcs_settings[enable_currency_switcher]" name="rcs_settings[enable_currency_switcher]" type="checkbox" value="1" <?php checked( 1, $enable_currency_switcher ); ?> />
-                                        <label class="description" for="rcs_settings[enable_currency_switcher]"><?php esc_html_e( 'Enable Currency Swithcer on frontend side.', 'realhomes-currency-switcher' ); ?></label>
+                                        <label class="description" for="rcs_settings[enable_currency_switcher]"><?php esc_html_e( 'Enable Currency Swithcer on frontend side.', RHCS_TEXT_DOMAIN ); ?></label>
                                     </td>
                                 </tr>
 
                                 <!-- Alternative Currencies enable/disable -->
                                 <tr>
                                     <th scope="row">
-				                        <?php esc_html_e( 'Digital Currencies', 'realhomes-currency-switcher' ); ?>
+				                        <?php esc_html_e( 'Digital Currencies', RHCS_TEXT_DOMAIN ); ?>
                                     </th>
                                     <td>
 				                        <?php
 				                        $enable_digital_currencies = ! empty( $rcs_settings['enable_digital_currencies'] ) ? $rcs_settings['enable_digital_currencies'] : '';
 				                        ?>
                                         <input id="rcs_settings[enable_digital_currencies]" name="rcs_settings[enable_digital_currencies]" type="checkbox" value="1" <?php checked( 1, $enable_digital_currencies ); ?> />
-                                        <label class="description" for="rcs_settings[enable_digital_currencies]"><?php esc_html_e( 'Enable Digital Currencies such as Bitcoin, Litecoin, etc.', 'realhomes-currency-switcher' ); ?></label>
+                                        <label class="description" for="rcs_settings[enable_digital_currencies]"><?php esc_html_e( 'Enable Digital Currencies such as Bitcoin, Litecoin, etc.', RHCS_TEXT_DOMAIN ); ?></label>
                                     </td>
                                 </tr>
 
                                 <!-- App ID -->
                                 <tr>
                                     <th scope="row">
-				                        <?php esc_html_e( 'App ID*', 'realhomes-currency-switcher' ); ?>
+				                        <?php esc_html_e( 'App ID*', RHCS_TEXT_DOMAIN ); ?>
                                     </th>
                                     <td>
 				                        <?php
 				                        $app_id = ! empty( $rcs_settings['app_id'] ) ? $rcs_settings['app_id'] : '';
 				                        ?>
                                         <input id="rcs_settings[app_id]" name="rcs_settings[app_id]" type="text" class="regular-text" value="<?php echo esc_attr( $app_id ); ?>"/>
-                                        <p class="description"><label for="rcs_settings[app_id]"><?php echo sprintf( esc_html__( 'You can get your Open Exchange Rate App ID from %s.', 'realhomes-currency-switcher' ), '<a href="https://support.openexchangerates.org/article/121-your-app-id" target="_blank">here</a>' ); ?></label></p>
+                                        <p class="description"><label for="rcs_settings[app_id]"><?php echo sprintf( esc_html__( 'You can get your Open Exchange Rate App ID from %s.', RHCS_TEXT_DOMAIN ), '<a href="https://support.openexchangerates.org/article/121-your-app-id" target="_blank">here</a>' ); ?></label></p>
                                     </td>
                                 </tr>
 
                                 <!-- Update frequency -->
                                 <tr>
                                     <th scope="row">
-				                        <?php esc_html_e( 'Update Interval', 'realhomes-currency-switcher' ); ?>
+				                        <?php esc_html_e( 'Update Interval', RHCS_TEXT_DOMAIN ); ?>
                                     </th>
                                     <td>
 				                        <?php
 				                        $update_frequency = isset( $rcs_settings['update_interval'] ) ? esc_attr( $rcs_settings['update_interval'] ) : 'daily';
 				                        ?>
                                         <select name="rcs_settings[update_interval]" id="update_interval" class="regular-text">
-                                            <option value="hourly" <?php selected( $update_frequency, 'hourly', true ); ?>><?php esc_html_e( 'Hourly', 'realhomes-currency-switcher' ); ?></option>
-                                            <option value="daily" <?php selected( $update_frequency, 'daily', true ); ?>><?php esc_html_e( 'Daily', 'realhomes-currency-switcher' ); ?></option>
-                                            <option value="weekly" <?php selected( $update_frequency, 'weekly', true ); ?>><?php esc_html_e( 'Weekly', 'realhomes-currency-switcher' ); ?></option>
+                                            <option value="hourly" <?php selected( $update_frequency, 'hourly', true ); ?>><?php esc_html_e( 'Hourly', RHCS_TEXT_DOMAIN ); ?></option>
+                                            <option value="daily" <?php selected( $update_frequency, 'daily', true ); ?>><?php esc_html_e( 'Daily', RHCS_TEXT_DOMAIN ); ?></option>
+                                            <option value="weekly" <?php selected( $update_frequency, 'weekly', true ); ?>><?php esc_html_e( 'Weekly', RHCS_TEXT_DOMAIN ); ?></option>
                                         </select>
-                                        <p class="description"><label for="rcs_settings[update_interval]"><?php esc_html_e( 'Set how frequent you want to update the currency exchange rates.', 'realhomes-currency-switcher' ); ?></label></p>
+                                        <p class="description"><label for="rcs_settings[update_interval]"><?php esc_html_e( 'Set how frequent you want to update the currency exchange rates.', RHCS_TEXT_DOMAIN ); ?></label></p>
                                     </td>
                                 </tr>
 
                                 <!-- Auto Active Currency -->
                                 <tr>
                                     <th scope="row">
-				                        <?php esc_html_e( 'Auto Select Active Currency', 'realhomes-currency-switcher' ); ?>
+				                        <?php esc_html_e( 'Auto Select Active Currency', RHCS_TEXT_DOMAIN ); ?>
                                     </th>
                                     <td>
 				                        <?php
@@ -162,15 +162,15 @@ if ( ! class_exists( 'Realhomes_Currency_Switcher_Settings' ) ) {
 				                        ?>
                                         <label for="isp_settings_publish_property_yes">
                                             <input type="radio" id="rcs-aac-true" <?php checked( $auto_active_currency, 'true', true ); ?> name="rcs_settings[auto_active_currency]" value="true">
-		                                    <?php esc_html_e( 'Enable', 'realhomes-currency-switcher' ); ?>
+		                                    <?php esc_html_e( 'Enable', RHCS_TEXT_DOMAIN ); ?>
                                         </label>
                                         <br />
                                         <label for="isp_settings_publish_property_yes">
                                             <input type="radio" id="rcs-aac-false" <?php checked( $auto_active_currency, 'false', true ); ?> name="rcs_settings[auto_active_currency]" value="false">
-		                                    <?php esc_html_e( 'Disable', 'realhomes-currency-switcher' ); ?>
+		                                    <?php esc_html_e( 'Disable', RHCS_TEXT_DOMAIN ); ?>
                                         </label>
                                         <p class="description">
-                                            <label for="rcs_settings[auto_active_currency]"><?php esc_html_e( 'The selected base currency in the next option will not be effective if this option is enabled. Currency will be switched to the visitor native currency automatically unless visitor change it to any other currency using currency switcher.', 'realhomes-currency-switcher' ); ?></label>
+                                            <label for="rcs_settings[auto_active_currency]"><?php esc_html_e( 'The selected base currency in the next option will not be effective if this option is enabled. Currency will be switched to the visitor native currency automatically unless visitor change it to any other currency using currency switcher.', RHCS_TEXT_DOMAIN ); ?></label>
                                         </p>
                                     </td>
                                 </tr>
@@ -178,7 +178,7 @@ if ( ! class_exists( 'Realhomes_Currency_Switcher_Settings' ) ) {
                                 <!-- Base Currency -->
                                 <tr>
                                     <th scope="row">
-				                        <?php esc_html_e( 'Base Currency', 'realhomes-currency-switcher' ); ?>
+				                        <?php esc_html_e( 'Base Currency', RHCS_TEXT_DOMAIN ); ?>
                                     </th>
                                     <td>
                                         <select name="rcs_settings[base_currency]" id="base_currency" class="regular-text">
@@ -193,29 +193,29 @@ if ( ! class_exists( 'Realhomes_Currency_Switcher_Settings' ) ) {
 							                        }
 						                        }
 					                        } else {
-						                        echo '<option value="USD">' . esc_html__( 'United States Dollar', 'realhomes-currency-switcher' ) . '</option>';
+						                        echo '<option value="USD">' . esc_html__( 'United States Dollar', RHCS_TEXT_DOMAIN ) . '</option>';
 					                        }
 					                        ?>
                                         </select>
-                                        <p class="description"><label for="rcs_settings[base_currency]"><?php esc_html_e( 'Price format settings of easy real estate plugin, will be overwritten by base currency’s default format.', 'realhomes-currency-switcher' ); ?></label></p>
+                                        <p class="description"><label for="rcs_settings[base_currency]"><?php esc_html_e( 'Price format settings of easy real estate plugin, will be overwritten by base currency’s default format.', RHCS_TEXT_DOMAIN ); ?></label></p>
                                     </td>
                                 </tr>
 
                                 <!-- Supported currencies by the current site -->
                                 <tr>
                                     <th scope="row">
-				                        <?php esc_html_e( 'Allowed Currencies', 'realhomes-currency-switcher' ); ?>
+				                        <?php esc_html_e( 'Allowed Currencies', RHCS_TEXT_DOMAIN ); ?>
                                     </th>
                                     <td>
 				                        <?php
 				                        $supported_currencies = empty( $rcs_settings['supported_currencies'] ) ? 'USD,EUR,GBP' : $rcs_settings['supported_currencies'];
 				                        ?>
                                         <textarea id="rcs_settings[supported_currencies]" name="rcs_settings[supported_currencies]" type="text" class="regular-text"><?php echo esc_attr( $supported_currencies ); ?></textarea>
-                                        <p class="description"><label for="rcs_settings[supported_currencies]"><?php esc_html_e( 'Provide comma separated list of currency codes in capital letters. Maximum 5 codes allowed.', 'realhomes-currency-switcher' ); ?></label></p>
+                                        <p class="description"><label for="rcs_settings[supported_currencies]"><?php esc_html_e( 'Provide comma separated list of currency codes in capital letters. Maximum 5 codes allowed.', RHCS_TEXT_DOMAIN ); ?></label></p>
                                         <p class="description"><label for="rcs_settings[supported_currencies]">
 						                        <?php
 						                        // Translators: OpenExchangeRates Currencies List.
-						                        echo sprintf( esc_html__( 'You can find full list of supported currencies by %s.', 'realhomes-currency-switcher' ), '<a href="https://openexchangerates.org/currencies" target="_blank">clicking here</a>' );
+						                        echo sprintf( esc_html__( 'You can find full list of supported currencies by %s.', RHCS_TEXT_DOMAIN ), '<a href="https://openexchangerates.org/currencies" target="_blank">clicking here</a>' );
 						                        ?>
                                             </label></p>
                                     </td>
@@ -224,26 +224,26 @@ if ( ! class_exists( 'Realhomes_Currency_Switcher_Settings' ) ) {
                                 <!-- Expiry period for switched currency -->
                                 <tr>
                                     <th scope="row">
-				                        <?php esc_html_e( 'Expiry Period of Switched Currency', 'realhomes-currency-switcher' ); ?>
+				                        <?php esc_html_e( 'Expiry Period of Switched Currency', RHCS_TEXT_DOMAIN ); ?>
                                     </th>
                                     <td>
 				                        <?php
 				                        $switched_currency_expiry = isset( $rcs_settings['switched_currency_expiry'] ) ? esc_attr( $rcs_settings['switched_currency_expiry'] ) : 'day';
 				                        ?>
                                         <select name="rcs_settings[switched_currency_expiry]" id="update_interval" class="regular-text">
-                                            <option value="3600" <?php selected( $switched_currency_expiry, '3600', true ); ?>><?php esc_html_e( 'One Hour', 'realhomes-currency-switcher' ); ?></option>
-                                            <option value="86400" <?php selected( $switched_currency_expiry, '86400', true ); ?>><?php esc_html_e( 'One Day', 'realhomes-currency-switcher' ); ?></option>
-                                            <option value="604800" <?php selected( $switched_currency_expiry, '604800', true ); ?>><?php esc_html_e( 'One Week', 'realhomes-currency-switcher' ); ?></option>
-                                            <option value="2592000" <?php selected( $switched_currency_expiry, '2592000', true ); ?>><?php esc_html_e( 'One Month', 'realhomes-currency-switcher' ); ?></option>
+                                            <option value="3600" <?php selected( $switched_currency_expiry, '3600', true ); ?>><?php esc_html_e( 'One Hour', RHCS_TEXT_DOMAIN ); ?></option>
+                                            <option value="86400" <?php selected( $switched_currency_expiry, '86400', true ); ?>><?php esc_html_e( 'One Day', RHCS_TEXT_DOMAIN ); ?></option>
+                                            <option value="604800" <?php selected( $switched_currency_expiry, '604800', true ); ?>><?php esc_html_e( 'One Week', RHCS_TEXT_DOMAIN ); ?></option>
+                                            <option value="2592000" <?php selected( $switched_currency_expiry, '2592000', true ); ?>><?php esc_html_e( 'One Month', RHCS_TEXT_DOMAIN ); ?></option>
                                         </select>
-                                        <p class="description"><label for="rcs_settings[switched_currency_expiry]"><?php esc_html_e( 'This is for website visitor.', 'realhomes-currency-switcher' ); ?></label></p>
+                                        <p class="description"><label for="rcs_settings[switched_currency_expiry]"><?php esc_html_e( 'This is for website visitor.', RHCS_TEXT_DOMAIN ); ?></label></p>
                                     </td>
                                 </tr>
 
                                 <!-- Force update currencies rates -->
                                 <tr>
                                     <th scope="row">
-				                        <?php esc_html_e( 'Update Currencies Rates', 'realhomes-currency-switcher' ); ?>
+				                        <?php esc_html_e( 'Update Currencies Rates', RHCS_TEXT_DOMAIN ); ?>
 				                        <?php
 				                        $last_update = get_option( 'realhomes_currencies_last_update' );
 				                        if ( ! empty( $last_update ) ) {
@@ -255,7 +255,7 @@ if ( ! class_exists( 'Realhomes_Currency_Switcher_Settings' ) ) {
                                     </th>
                                     <td>
                                         <input id="rcs_settings[update_currencies_rates]" name="rcs_settings[update_currencies_rates]" type="checkbox" value="1" />
-                                        <label class="description" for="rcs_settings[update_currencies_rates]"><?php esc_html_e( 'Checking this box will immediately fetch latest currencies exchange rates on Save Options.', 'realhomes-currency-switcher' ); ?></label>
+                                        <label class="description" for="rcs_settings[update_currencies_rates]"><?php esc_html_e( 'Checking this box will immediately fetch latest currencies exchange rates on Save Options.', RHCS_TEXT_DOMAIN ); ?></label>
                                     </td>
                                 </tr>
 
@@ -265,8 +265,8 @@ if ( ! class_exists( 'Realhomes_Currency_Switcher_Settings' ) ) {
                         </div>
                     </div>
                     <footer class="settings-footer">
-                        <p><span class="dashicons dashicons-editor-help"></span><?php printf( esc_html__( 'For help, please consult the %1$s documentation %2$s of the plugin.', 'realhomes-currency-switcher' ), '<a href="https://realhomes.io/documentation/currency-switcher/" target="_blank">', '</a>' ); ?></p>
-                        <p><span class="dashicons dashicons-feedback"></span><?php printf( esc_html__( 'For feedback, please provide your %1$s feedback here! %2$s', 'realhomes-currency-switcher' ), '<a href="' . esc_url( add_query_arg( array( 'page' => 'realhomes-feedback' ), get_admin_url() . 'admin.php' ) ) . '" target="_blank">', '</a>' ); ?></p>
+                        <p><span class="dashicons dashicons-editor-help"></span><?php printf( esc_html__( 'For help, please consult the %1$s documentation %2$s of the plugin.', RHCS_TEXT_DOMAIN ), '<a href="https://realhomes.io/documentation/currency-switcher/" target="_blank">', '</a>' ); ?></p>
+                        <p><span class="dashicons dashicons-feedback"></span><?php printf( esc_html__( 'For feedback, please provide your %1$s feedback here! %2$s', RHCS_TEXT_DOMAIN ), '<a href="' . esc_url( add_query_arg( array( 'page' => 'realhomes-feedback' ), get_admin_url() . 'admin.php' ) ) . '" target="_blank">', '</a>' ); ?></p>
                     </footer>
 				</form>
 			</div>

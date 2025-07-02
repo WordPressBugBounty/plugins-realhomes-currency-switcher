@@ -35,7 +35,7 @@ class Realhomes_Currency_Switcher_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'realhomes-currency-switcher',
+			RHCS_TEXT_DOMAIN,
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);

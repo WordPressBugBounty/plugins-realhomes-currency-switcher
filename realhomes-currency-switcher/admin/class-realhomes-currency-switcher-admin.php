@@ -201,7 +201,7 @@ class Realhomes_Currency_Switcher_Admin {
 				echo wp_json_encode(
 					array(
 						'success' => false,
-						'message' => esc_html__( 'Security verification failed, please refresh the page and try again.', 'realhomes-currency-switcher' ),
+						'message' => esc_html__( 'Security verification failed, please refresh the page and try again.', RHCS_TEXT_DOMAIN ),
 					)
 				);
 				die;
@@ -236,7 +236,7 @@ class Realhomes_Currency_Switcher_Admin {
 				echo wp_json_encode(
 					array(
 						'success' => false,
-						'message' => esc_html__( 'Invalid Request!', 'realhomes-currency-switcher' ),
+						'message' => esc_html__( 'Invalid Request!', RHCS_TEXT_DOMAIN ),
 					)
 				);
 		}
@@ -306,8 +306,8 @@ if ( ! function_exists( 'rhcs_plugin_action_links' ) ) {
 	function rhcs_plugin_action_links( array $plugin_actions, string $plugin_file ): array {
 
 		if ( 'realhomes-currency-switcher/realhomes-currency-switcher.php' === $plugin_file ) {
-			$settings_link = '<a href="' . esc_url( admin_url( 'admin.php?page=realhomes-currencies-settings' ) ) . '">' . esc_html__( 'Settings', 'realhomes-currency-switcher' ) . '</a>';
-			$documentation_link = '<a href="https://realhomes.io/documentation/currency-switcher/" target="_blank">' . esc_html__( 'Documentation', 'realhomes-currency-switcher' ) . '</a>';
+			$settings_link = '<a href="' . esc_url( admin_url( 'admin.php?page=realhomes-currencies-settings' ) ) . '">' . esc_html__( 'Settings', RHCS_TEXT_DOMAIN ) . '</a>';
+			$documentation_link = '<a href="https://realhomes.io/documentation/currency-switcher/" target="_blank">' . esc_html__( 'Documentation', RHCS_TEXT_DOMAIN ) . '</a>';
 
 			// Placing links in start
 			array_unshift( $plugin_actions, $settings_link, $documentation_link );
