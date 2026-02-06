@@ -204,20 +204,44 @@ if ( ! class_exists( 'Realhomes_Currency_Switcher_Settings' ) ) {
                                 <!-- Supported currencies by the current site -->
                                 <tr>
                                     <th scope="row">
-				                        <?php esc_html_e( 'Allowed Currencies', RHCS_TEXT_DOMAIN ); ?>
+				                        <?php esc_html_e( 'Supported Currencies', RHCS_TEXT_DOMAIN ); ?>
                                     </th>
                                     <td>
 				                        <?php
 				                        $supported_currencies = empty( $rcs_settings['supported_currencies'] ) ? 'USD,EUR,GBP' : $rcs_settings['supported_currencies'];
 				                        ?>
                                         <textarea id="rcs_settings[supported_currencies]" name="rcs_settings[supported_currencies]" type="text" class="regular-text"><?php echo esc_attr( $supported_currencies ); ?></textarea>
-                                        <p class="description"><label for="rcs_settings[supported_currencies]"><?php esc_html_e( 'Provide comma separated list of currency codes in capital letters. Maximum 5 codes allowed.', RHCS_TEXT_DOMAIN ); ?></label></p>
+                                        <p class="description"><label for="rcs_settings[supported_currencies]"><?php esc_html_e( 'Provide comma separated list of currency codes in capital letters.', RHCS_TEXT_DOMAIN ); ?></label></p>
                                         <p class="description"><label for="rcs_settings[supported_currencies]">
 						                        <?php
 						                        // Translators: OpenExchangeRates Currencies List.
 						                        echo sprintf( esc_html__( 'You can find full list of supported currencies by %s.', RHCS_TEXT_DOMAIN ), '<a href="https://openexchangerates.org/currencies" target="_blank">clicking here</a>' );
 						                        ?>
                                             </label></p>
+                                    </td>
+                                </tr>
+
+                                <!-- Number of currencies to display on frontend -->
+                                <tr>
+                                    <th scope="row">
+		                                <?php esc_html_e( 'Number of Currencies to Display on Frontend', RHCS_TEXT_DOMAIN ); ?>
+                                    </th>
+                                    <td>
+		                                <?php
+		                                $max_currencies = isset( $rcs_settings['max_currencies'] ) ? intval( $rcs_settings['max_currencies'] ) : 5;
+		                                ?>
+                                        <select name="rcs_settings[max_currencies]" id="max_currencies" class="regular-text">
+			                                <?php
+			                                for ( $i = 1; $i <= 50; $i++ ) {
+				                                echo '<option value="' . esc_attr( $i ) . '" ' . selected( $max_currencies, $i, false ) . '>' . esc_html( $i ) . '</option>';
+			                                }
+			                                ?>
+                                        </select>
+                                        <p class="description">
+                                            <label for="rcs_settings[max_currencies]">
+				                                <?php esc_html_e( 'Set the number of currencies that should appear on the frontend. The maximum allowed is 50.', RHCS_TEXT_DOMAIN ); ?>
+                                            </label>
+                                        </p>
                                     </td>
                                 </tr>
 

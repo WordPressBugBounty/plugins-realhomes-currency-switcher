@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: RealHomes Currency Switcher\n"
-"POT-Creation-Date: 2025-07-02 20:46+0500\n"
+"POT-Creation-Date: 2025-12-04 12:18+0500\n"
 "PO-Revision-Date: 2020-05-20 18:11+0500\n"
 "Last-Translator: \n"
 "Language-Team: InspiryThemes info@inspirythemes.com\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: realhomes-currency-switcher.php\n"
@@ -131,13 +131,11 @@ msgid ""
 msgstr ""
 
 #: admin/class-realhomes-currency-switcher-settings.php:207
-msgid "Allowed Currencies"
+msgid "Supported Currencies"
 msgstr ""
 
 #: admin/class-realhomes-currency-switcher-settings.php:214
-msgid ""
-"Provide comma separated list of currency codes in capital letters. Maximum 5 "
-"codes allowed."
+msgid "Provide comma separated list of currency codes in capital letters."
 msgstr ""
 
 #: admin/class-realhomes-currency-switcher-settings.php:218
@@ -146,45 +144,55 @@ msgid "You can find full list of supported currencies by %s."
 msgstr ""
 
 #: admin/class-realhomes-currency-switcher-settings.php:227
+msgid "Number of Currencies to Display on Frontend"
+msgstr ""
+
+#: admin/class-realhomes-currency-switcher-settings.php:242
+msgid ""
+"Set the number of currencies that should appear on the frontend. The maximum "
+"allowed is 50."
+msgstr ""
+
+#: admin/class-realhomes-currency-switcher-settings.php:251
 msgid "Expiry Period of Switched Currency"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:234
+#: admin/class-realhomes-currency-switcher-settings.php:258
 msgid "One Hour"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:235
+#: admin/class-realhomes-currency-switcher-settings.php:259
 msgid "One Day"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:236
+#: admin/class-realhomes-currency-switcher-settings.php:260
 msgid "One Week"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:237
+#: admin/class-realhomes-currency-switcher-settings.php:261
 msgid "One Month"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:239
+#: admin/class-realhomes-currency-switcher-settings.php:263
 msgid "This is for website visitor."
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:246
+#: admin/class-realhomes-currency-switcher-settings.php:270
 msgid "Update Currencies Rates"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:258
+#: admin/class-realhomes-currency-switcher-settings.php:282
 msgid ""
 "Checking this box will immediately fetch latest currencies exchange rates on "
 "Save Options."
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:268
+#: admin/class-realhomes-currency-switcher-settings.php:292
 #, php-format
 msgid "For help, please consult the %1$s documentation %2$s of the plugin."
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:269
+#: admin/class-realhomes-currency-switcher-settings.php:293
 #, php-format
 msgid "For feedback, please provide your %1$s feedback here! %2$s"
 msgstr ""

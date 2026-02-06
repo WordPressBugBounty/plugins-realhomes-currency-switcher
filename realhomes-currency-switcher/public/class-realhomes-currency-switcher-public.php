@@ -130,7 +130,6 @@ if ( ! function_exists( 'realhomes_get_supported_currencies' ) ) {
 	 * @return array
 	 */
 	function realhomes_get_supported_currencies() {
-
 		$rcs_settings             = get_option( 'rcs_settings' );
 		$supported_currencies_str = $rcs_settings['supported_currencies'];
 
@@ -144,11 +143,13 @@ if ( ! function_exists( 'realhomes_get_supported_currencies' ) ) {
 			);
 		}
 
-		if( isset( $rcs_settings['auto_active_currency_value'] ) && $rcs_settings['auto_active_currency_value'] ) {
+		if ( ! empty( $rcs_settings['auto_active_currency_value'] ) ) {
 			$supported_currencies_array[] = $rcs_settings['auto_active_currency_value'];
 		}
 
-		return array_slice( $supported_currencies_array, 0, 5 );
+		$max_currencies = isset( $rcs_settings['max_currencies'] ) ? intval( $rcs_settings['max_currencies'] ) : 5;
+
+		return array_slice( $supported_currencies_array, 0, $max_currencies );
 	}
 }
 
