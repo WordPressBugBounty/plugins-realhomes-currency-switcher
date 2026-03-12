@@ -21,6 +21,9 @@ if ( ! function_exists( 'realhomes_format_currency_data' ) ) {
 
 		$data = $currencies;
 
+		// Get user-defined custom formats (priority over hardcoded defaults).
+		$custom_formats = get_option( 'rcs_custom_currency_formats', array() );
+
 		if ( $currencies && is_array( $currencies ) && count( $currencies ) > 100 ) :
 
 			foreach ( $currencies as $currency_code => $currency_data ) :
@@ -29,6 +32,22 @@ if ( ! function_exists( 'realhomes_format_currency_data' ) ) {
 					continue;
 				}
 
+				// Check for user-defined custom format first (highest priority).
+				if ( ! empty( $custom_formats[ $currency_code ] ) ) {
+					$custom = $custom_formats[ $currency_code ];
+					$data[ $currency_code ] = array(
+						'name'           => $currency_data['name'],
+						'symbol'         => ! empty( $custom['symbol'] ) ? $custom['symbol'] : $currency_data['symbol'],
+						'position'       => ! empty( $custom['position'] ) ? $custom['position'] : 'before',
+						'symbol_spacing' => isset( $custom['symbol_spacing'] ) ? $custom['symbol_spacing'] : '',
+						'decimals'       => isset( $custom['decimals'] ) ? intval( $custom['decimals'] ) : 2,
+						'thousands_sep'  => isset( $custom['thousands_sep'] ) ? $custom['thousands_sep'] : ',',
+						'decimals_sep'   => isset( $custom['decimals_sep'] ) ? $custom['decimals_sep'] : '.',
+					);
+					continue;
+				}
+
+				// Hardcoded format defaults below (original logic).
 				if ( 'AUD' === $currency_code ) {
 
 					// Australian Dollar.

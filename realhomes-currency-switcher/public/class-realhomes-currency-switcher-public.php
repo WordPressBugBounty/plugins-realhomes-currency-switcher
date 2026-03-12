@@ -217,7 +217,7 @@ if ( ! function_exists( 'realhomes_currency_exists' ) ) {
 
 if ( ! function_exists( 'realhomes_get_currencies_data' ) ) {
 	/**
-	 * Return currency data from database.
+	 * Return currency data from database with custom formats applied.
 	 *
 	 * @since  1.0.0
 	 * @return array|null
@@ -227,6 +227,32 @@ if ( ! function_exists( 'realhomes_get_currencies_data' ) ) {
 		$currencies_data = get_option( 'realhomes_currencies_data' );
 
 		if ( ! empty( $currencies_data ) && is_array( $currencies_data ) ) {
+
+			// Apply user-defined custom formats.
+			$custom_formats = get_option( 'rcs_custom_currency_formats', array() );
+
+			if ( ! empty( $custom_formats ) && is_array( $custom_formats ) ) {
+				foreach ( $custom_formats as $currency_code => $custom_format ) {
+					if ( isset( $currencies_data[ $currency_code ] ) ) {
+						$existing = $currencies_data[ $currency_code ];
+
+						// Build custom values array with fallbacks to existing data.
+						$custom_values = array(
+							'symbol'         => ! empty( $custom_format['symbol'] ) ? $custom_format['symbol'] : $existing['symbol'],
+							'position'       => ! empty( $custom_format['position'] ) ? $custom_format['position'] : $existing['position'],
+							'symbol_spacing' => isset( $custom_format['symbol_spacing'] ) ? $custom_format['symbol_spacing'] : '',
+							'decimals'       => isset( $custom_format['decimals'] ) ? intval( $custom_format['decimals'] ) : $existing['decimals'],
+							'thousands_sep'  => isset( $custom_format['thousands_sep'] ) ? $custom_format['thousands_sep'] : $existing['thousands_sep'],
+							'decimals_sep'   => isset( $custom_format['decimals_sep'] ) ? $custom_format['decimals_sep'] : $existing['decimals_sep'],
+							'rounding'       => isset( $custom_format['rounding'] ) ? $custom_format['rounding'] : 'none',
+						);
+
+						// Merge custom values with existing data.
+						$currencies_data[ $currency_code ] = array_merge( $existing, $custom_values );
+					}
+				}
+			}
+
 			return $currencies_data;
 		}
 
@@ -297,7 +323,7 @@ if ( ! function_exists( 'realhomes_convert_currency' ) ) {
 	 * @param  float  $amount           An amount to change currency for.
 	 * @param  string $base_currency    To use as base currency while conversion.
 	 * @param  string $current_currency To use as current currency while conversion.
-	 * @return int
+	 * @return float
 	 */
 	function realhomes_convert_currency( $amount, $base_currency, $current_currency ) {
 
@@ -311,7 +337,7 @@ if ( ! function_exists( 'realhomes_convert_currency' ) ) {
 			// Convert amount into current currency.
 			$converted_amount = $usd_amount * $currencies_rates[ $current_currency ];
 
-			return ceil( $converted_amount );
+			return $converted_amount;
 		}
 
 		return $amount;
@@ -337,12 +363,23 @@ if ( ! function_exists( 'realhomes_format_currency' ) ) {
 
 		$currencies_data = realhomes_get_currencies_data();
 		$currency        = $currencies_data[ $currency_code ];
+		$spacing         = isset( $currency['symbol_spacing'] ) ? $currency['symbol_spacing'] : '';
 
-		$formatted_amount = number_format( $amount, 0, $currency['decimals_sep'], $currency['thousands_sep'] );
+		// Apply rounding based on currency setting.
+		$rounding = isset( $currency['rounding'] ) ? $currency['rounding'] : 'none';
+		if ( 'ceil' === $rounding ) {
+			$amount = ceil( $amount );
+		} elseif ( 'floor' === $rounding ) {
+			$amount = floor( $amount );
+		}
+
+		$decimals         = isset( $currency['decimals'] ) ? intval( $currency['decimals'] ) : 0;
+
+		$formatted_amount = number_format( $amount, $decimals, $currency['decimals_sep'], $currency['thousands_sep'] );
 		if ( false === $currency_symbol ) {
 			$result = $formatted_amount;
 		} else {
-			$result = 'before' === $currency['position'] ? $currency['symbol'] . $formatted_amount : $formatted_amount . $currency['symbol'];
+			$result = 'before' === $currency['position'] ? $currency['symbol'] . $spacing . $formatted_amount : $formatted_amount . $spacing . $currency['symbol'];
 		}
 
 		return html_entity_decode( $result );
@@ -384,6 +421,11 @@ if ( ! function_exists( 'rcs_get_visitor_country_currency' ) ) {
 	function rcs_get_visitor_country_currency() {
 
 		$rcs_settings = get_option( 'rcs_settings' );
+
+		// Ensure $rcs_settings is an array
+		if ( ! is_array( $rcs_settings ) ) {
+			$rcs_settings = array();
+		}
 
 		if (
 			isset( $rcs_settings[ 'auto_active_currency' ] )

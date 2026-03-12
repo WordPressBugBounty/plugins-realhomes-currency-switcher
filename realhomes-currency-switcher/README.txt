@@ -48,6 +48,19 @@ No, this plugin works only with [RealHomes WordPress real estate theme.](https:/
 
 == Changelog ==
 
+= 1.1.0 =
+* Added: New tabbed interface to separate "General Settings" and "Supported Currencies Format"
+* Added: Collapsible accordion panels for each supported currency to customize individual formats
+* Added: Per-currency formatting options including symbol, position, spacing, decimals, and separators
+* Added: Live preview feature in the admin panel to display exactly how the custom format will look
+* Added: Per-currency rounding options (None, Round Up, Round Down) to control converted price logic
+* Added: Precise decimal handling in the conversion logic to prevent premature rounding of converted prices
+* Fixed: Resolved the frontend display bug where decimal places were missing from property prices
+* Improved: Updated translations domain to RCS_TEXT_DOMAIN and plugin directory to RH_CURRENCY_SWITCHER_DIR to prevent conflicts
+* Improved: Refactored admin JavaScript for better decimal validation, event delegation, and robust separator fallbacks
+* Updated: Language POT file
+* Tested: Plugin with WordPress 6.9.4
+
 = 1.0.15 =
 * WordPress 6.9 compatibility confirmed
 * Updated minimum PHP requirement to 8.3 (recommended by WordPress.org)

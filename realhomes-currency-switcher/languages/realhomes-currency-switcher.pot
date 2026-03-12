@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: RealHomes Currency Switcher\n"
-"POT-Creation-Date: 2025-12-04 12:18+0500\n"
+"POT-Creation-Date: 2026-03-12 00:21+0500\n"
 "PO-Revision-Date: 2020-05-20 18:11+0500\n"
 "Last-Translator: \n"
 "Language-Team: InspiryThemes info@inspirythemes.com\n"
@@ -47,154 +47,231 @@ msgstr ""
 msgid "Currencies Settings"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:56
+#: admin/class-realhomes-currency-switcher-settings.php:52
 msgid "RealHomes Currency Switcher Settings"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:97
+#: admin/class-realhomes-currency-switcher-settings.php:98
+#, php-format
+msgid "For help, please consult the %1$s documentation %2$s of the plugin."
+msgstr ""
+
+#: admin/class-realhomes-currency-switcher-settings.php:99
+#, php-format
+msgid "For feedback, please provide your %1$s feedback here! %2$s"
+msgstr ""
+
+#: admin/class-realhomes-currency-switcher-settings.php:113
+msgid "General Settings"
+msgstr ""
+
+#: admin/class-realhomes-currency-switcher-settings.php:114
+msgid "Supported Currencies Format"
+msgstr ""
+
+#: admin/settings/formats.php:18
+msgid ""
+"Customize the display format for each supported currency. Changes will "
+"override default formats."
+msgstr ""
+
+#: admin/settings/formats.php:57
+msgid "Symbol"
+msgstr ""
+
+#: admin/settings/formats.php:61
+msgid "Position"
+msgstr ""
+
+#: admin/settings/formats.php:63
+msgid "Before Price"
+msgstr ""
+
+#: admin/settings/formats.php:64
+msgid "After Price"
+msgstr ""
+
+#: admin/settings/formats.php:68
+msgid "Symbol Spacing"
+msgstr ""
+
+#: admin/settings/formats.php:70
+msgid "No Space"
+msgstr ""
+
+#: admin/settings/formats.php:71
+msgid "Space"
+msgstr ""
+
+#: admin/settings/formats.php:75
+msgid "Decimals"
+msgstr ""
+
+#: admin/settings/formats.php:79
+msgid "Thousands Separator"
+msgstr ""
+
+#: admin/settings/formats.php:83
+msgid "Decimals Separator"
+msgstr ""
+
+#: admin/settings/formats.php:87
+msgid "Rounding"
+msgstr ""
+
+#: admin/settings/formats.php:89
+msgid "No Rounding"
+msgstr ""
+
+#: admin/settings/formats.php:90
+msgid "Round Up"
+msgstr ""
+
+#: admin/settings/formats.php:91
+msgid "Round Down"
+msgstr ""
+
+#: admin/settings/formats.php:95
+msgid "Preview"
+msgstr ""
+
+#: admin/settings/formats.php:100
+msgid "Reset to Default"
+msgstr ""
+
+#: admin/settings/formats.php:111
+msgid ""
+"No supported currencies found. Please add currencies to the \"Supported "
+"Currencies\" field in the General Settings tab and save settings."
+msgstr ""
+
+#: admin/settings/general.php:22
 msgid "Currency Switcher"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:104
+#: admin/settings/general.php:29
 msgid "Enable Currency Swithcer on frontend side."
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:111
+#: admin/settings/general.php:36
 msgid "Digital Currencies"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:118
+#: admin/settings/general.php:43
 msgid "Enable Digital Currencies such as Bitcoin, Litecoin, etc."
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:125
+#: admin/settings/general.php:50
 msgid "App ID*"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:132
+#: admin/settings/general.php:57
 #, php-format
 msgid "You can get your Open Exchange Rate App ID from %s."
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:139
+#: admin/settings/general.php:64
 msgid "Update Interval"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:146
+#: admin/settings/general.php:71
 msgid "Hourly"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:147
+#: admin/settings/general.php:72
 msgid "Daily"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:148
+#: admin/settings/general.php:73
 msgid "Weekly"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:150
+#: admin/settings/general.php:75
 msgid "Set how frequent you want to update the currency exchange rates."
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:157
+#: admin/settings/general.php:82
 msgid "Auto Select Active Currency"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:165
-msgid "Enable"
-msgstr ""
-
-#: admin/class-realhomes-currency-switcher-settings.php:170
+#: admin/settings/general.php:89
 msgid "Disable"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:173
-msgid ""
-"The selected base currency in the next option will not be effective if this "
-"option is enabled. Currency will be switched to the visitor native currency "
-"automatically unless visitor change it to any other currency using currency "
-"switcher."
+#: admin/settings/general.php:90
+msgid "Enable"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:181
+#: admin/settings/general.php:92
+msgid ""
+"Automatically switch visitor currency based on location (using IP detection)."
+msgstr ""
+
+#: admin/settings/general.php:99
 msgid "Base Currency"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:196
-msgid "United States Dollar"
-msgstr ""
-
-#: admin/class-realhomes-currency-switcher-settings.php:200
+#: admin/settings/general.php:106
 msgid ""
 "Price format settings of easy real estate plugin, will be overwritten by "
-"base currency’s default format."
+"base currency's default format."
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:207
+#: admin/settings/general.php:113
 msgid "Supported Currencies"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:214
+#: admin/settings/general.php:120
 msgid "Provide comma separated list of currency codes in capital letters."
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:218
+#: admin/settings/general.php:123
 #, php-format
 msgid "You can find full list of supported currencies by %s."
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:227
+#: admin/settings/general.php:132
 msgid "Number of Currencies to Display on Frontend"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:242
+#: admin/settings/general.php:147
 msgid ""
 "Set the number of currencies that should appear on the frontend. The maximum "
 "allowed is 50."
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:251
+#: admin/settings/general.php:156
 msgid "Expiry Period of Switched Currency"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:258
+#: admin/settings/general.php:163
 msgid "One Hour"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:259
+#: admin/settings/general.php:164
 msgid "One Day"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:260
+#: admin/settings/general.php:165
 msgid "One Week"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:261
+#: admin/settings/general.php:166
 msgid "One Month"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:263
+#: admin/settings/general.php:168
 msgid "This is for website visitor."
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:270
+#: admin/settings/general.php:175
 msgid "Update Currencies Rates"
 msgstr ""
 
-#: admin/class-realhomes-currency-switcher-settings.php:282
+#: admin/settings/general.php:187
 msgid ""
 "Checking this box will immediately fetch latest currencies exchange rates on "
 "Save Options."
-msgstr ""
-
-#: admin/class-realhomes-currency-switcher-settings.php:292
-#, php-format
-msgid "For help, please consult the %1$s documentation %2$s of the plugin."
-msgstr ""
-
-#: admin/class-realhomes-currency-switcher-settings.php:293
-#, php-format
-msgid "For feedback, please provide your %1$s feedback here! %2$s"
 msgstr ""
 
 #: includes/class-realhomes-currency-switcher.php:176

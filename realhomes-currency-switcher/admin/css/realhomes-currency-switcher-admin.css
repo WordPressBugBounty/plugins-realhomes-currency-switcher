@@ -2,20 +2,213 @@
  * All of the CSS for admin-specific functionality
  * included in this file.
  */
+
+/* Tab Navigation */
+.rcs-nav-tabs {
+    border-bottom: 2px solid #1e8cbe;
+    margin-bottom: 20px;
+    padding-bottom: 0;
+}
+
+.rcs-nav-tabs .nav-tab {
+    background: #f1f1f1;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    color: #555;
+    padding: 10px 20px;
+    margin-left: 5px;
+    margin-bottom: -1px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.rcs-nav-tabs .nav-tab:first-child {
+    margin-left: 0;
+}
+
+.rcs-nav-tabs .nav-tab:hover {
+    background: #fff;
+    color: #000;
+}
+
+.rcs-nav-tabs .nav-tab-active,
+.rcs-nav-tabs .nav-tab-active:hover {
+    background: #1e8cbe;
+    color: #000;
+    border-color: #1e8cbe;
+}
+
 th span.currencies-last-update {
-	display: block;
-	background: #8080804a;
+    display: block;
+    background: #8080804a;
     padding: 3px;
     border-radius: 4px;
     font-size: 10px;
 }
 
 th span.currencies-last-update em {
-	display: block;
-	color: #b42929;
-	font-style: normal;
+    display: block;
+    color: #b42929;
+    font-style: normal;
 }
 
 .form-table td p.description {
     max-width: 650px;
+}
+
+/* Currency Formats Section */
+.rcs-section-title {
+    margin: 30px 0 5px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    font-size: 1.3em;
+}
+
+.rcs-section-description {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.rcs-currency-formats-wrap {
+    max-width: 800px;
+}
+
+.rcs-currency-format-panel {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.rcs-panel-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    cursor: pointer;
+    background: #f9f9f9;
+    border-radius: 4px 4px 0 0;
+    transition: background 0.2s;
+}
+
+.rcs-panel-header:hover {
+    background: #f1f1f1;
+}
+
+.rcs-panel-header.active {
+    border-bottom: 1px solid #ddd;
+}
+
+.rcs-panel-toggle {
+    margin-right: 10px;
+    color: #666;
+    transition: transform 0.2s;
+}
+
+.rcs-panel-header.active .rcs-panel-toggle {
+    transform: rotate(180deg);
+}
+
+.rcs-panel-header strong {
+    min-width: 50px;
+    font-size: 14px;
+}
+
+.rcs-currency-name {
+    color: #666;
+    margin-left: 10px;
+    flex: 1;
+}
+
+.rcs-format-preview {
+    background: #e8f4e8;
+    padding: 4px 12px;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 13px;
+    color: #2a7a2a;
+}
+
+.rcs-panel-content {
+    padding: 20px;
+}
+
+.rcs-format-fields {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.rcs-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.rcs-field label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 12px;
+    color: #555;
+}
+
+.rcs-field input,
+.rcs-field select {
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.rcs-field input:focus,
+.rcs-field select:focus {
+    border-color: #007cba;
+    outline: none;
+    box-shadow: 0 0 0 1px #007cba;
+}
+
+.rcs-field-preview {
+    grid-column: span 3;
+}
+
+.rcs-live-preview {
+    display: inline-block;
+    background: #f0f6fc;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1d2327;
+    border: 2px dashed #c3c4c7;
+}
+
+.rcs-reset-format {
+    margin-top: 5px;
+}
+
+.rcs-no-currencies {
+    background: #fff8e5;
+    padding: 15px;
+    border-left: 4px solid #ffb900;
+    color: #6d5a00;
+}
+
+@media (max-width: 782px) {
+    .rcs-format-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .rcs-field-preview {
+        grid-column: span 1;
+    }
+
+    .rcs-panel-header {
+        flex-wrap: wrap;
+    }
+
+    .rcs-format-preview {
+        margin-top: 10px;
+        width: 100%;
+        text-align: center;
+    }
 }
