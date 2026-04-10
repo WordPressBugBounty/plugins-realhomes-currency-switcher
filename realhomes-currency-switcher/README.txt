@@ -4,7 +4,7 @@ Tags: currency switcher, multi currency, real estate currencies, realhomes
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 8.3
-Stable tag: 1.0.15
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -47,6 +47,12 @@ No, this plugin works only with [RealHomes WordPress real estate theme.](https:/
 1. Currency Switcher Settings
 
 == Changelog ==
+
+= 1.1.1 =
+* Added: Currency Switcher plugin settings to RealHomes Options Panel
+* Some other code improvements
+* Updated language POT file
+* Tested plugin with WordPress 6.9.4
 
 = 1.1.0 =
 * Added: New tabbed interface to separate "General Settings" and "Supported Currencies Format"

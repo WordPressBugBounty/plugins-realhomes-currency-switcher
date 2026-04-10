@@ -65,8 +65,8 @@ class Realhomes_Currency_Switcher_Admin {
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
 
-		$this->currencies_list_url  = 'http://openexchangerates.org/api/currencies.json';
-		$this->currencies_rates_url = 'http://openexchangerates.org/api/latest.json?app_id=';
+		$this->currencies_list_url  = 'https://openexchangerates.org/api/currencies.json';
+		$this->currencies_rates_url = 'https://openexchangerates.org/api/latest.json?app_id=';
 
 		if ( realhomes_currency_switcher_enabled() ) {
 
@@ -145,43 +145,48 @@ class Realhomes_Currency_Switcher_Admin {
 
 		$currencies = array();
 
-		$currency_data = wp_remote_get( $this->currencies_list_url );
+		$response = wp_remote_get( $this->currencies_list_url, array( 'timeout' => 15 ) );
 
-		// Check if request response is safe.
-		if ( ! is_wp_error( $currency_data ) ) {
+		// If the remote request failed, fall back to the cached data so we don't wipe it.
+		if ( is_wp_error( $response ) ) {
+			$cached_data = get_option( 'realhomes_currencies_data', array() );
+			return ! empty( $cached_data ) ? $cached_data : null;
+		}
 
-			$currency_data = isset( $currency_data['body'] ) ? (array) json_decode( $currency_data['body'] ) : $currency_data;
+		$body          = wp_remote_retrieve_body( $response );
+		$currency_data = ! empty( $body ) ? (array) json_decode( $body ) : array();
 
-			// Expecting an array with over 100 currencies.
-			if ( is_array( $currency_data ) && count( $currency_data ) > 100 ) {
+		// Expecting an array with over 100 currencies from the API.
+		if ( is_array( $currency_data ) && count( $currency_data ) > 100 ) {
 
-				foreach ( $currency_data as $currency_code => $currency_name ) {
+			foreach ( $currency_data as $currency_code => $currency_name ) {
 
-					if ( ! is_string( $currency_code ) || ! is_string( $currency_name ) ) {
-						continue;
-					}
-
-					$currency_code = strtoupper( substr( sanitize_key( $currency_code ), 0, 3 ) );
-
-					// Defaults.
-					$currencies[ $currency_code ] = array(
-						'name'          => sanitize_text_field( $currency_name ),
-						'symbol'        => $currency_code,
-						'position'      => 'before',
-						'decimals'      => 2,
-						'thousands_sep' => ',',
-						'decimals_sep'  => '.',
-					);
+				if ( ! is_string( $currency_code ) || ! is_string( $currency_name ) ) {
+					continue;
 				}
+
+				$currency_code = strtoupper( substr( sanitize_key( $currency_code ), 0, 3 ) );
+
+				// Defaults.
+				$currencies[ $currency_code ] = array(
+					'name'          => sanitize_text_field( $currency_name ),
+					'symbol'        => $currency_code,
+					'position'      => 'before',
+					'decimals'      => 2,
+					'thousands_sep' => ',',
+					'decimals_sep'  => '.',
+				);
 			}
 
 			// Format meta for each currency.
-			$currency_data = realhomes_format_currency_data( $currencies );
+			$currency_format_data = realhomes_format_currency_data( $currencies );
 
-			return (array) apply_filters( 'realhomes_currencies_data', $currency_data );
+			return (array) apply_filters( 'realhomes_currencies_data', $currency_format_data );
 		}
 
-		return null;
+		// API returned fewer currencies than expected — fall back to cached data.
+		$cached_data = get_option( 'realhomes_currencies_data', array() );
+		return ! empty( $cached_data ) ? $cached_data : null;
 	}
 
 	/**
@@ -228,7 +233,7 @@ class Realhomes_Currency_Switcher_Admin {
 				echo wp_json_encode(
 					array(
 						'success' => false,
-						'message' => esc_html__( 'Failed to update cookie!', 'realhomes-currency-swticher' ),
+						'message' => esc_html__( 'Failed to update cookie!', RCS_TEXT_DOMAIN ),
 					)
 				);
 			}
@@ -306,7 +311,7 @@ if ( ! function_exists( 'rhcs_plugin_action_links' ) ) {
 	function rhcs_plugin_action_links( array $plugin_actions, string $plugin_file ): array {
 
 		if ( 'realhomes-currency-switcher/realhomes-currency-switcher.php' === $plugin_file ) {
-			$settings_link = '<a href="' . esc_url( admin_url( 'admin.php?page=realhomes-currencies-settings' ) ) . '">' . esc_html__( 'Settings', RCS_TEXT_DOMAIN ) . '</a>';
+			$settings_link 		= '<a href="' . esc_url( admin_url( 'admin.php?page=realhomes-settings&tab=currencies' ) ) . '">' . esc_html__( 'Settings', RCS_TEXT_DOMAIN ) . '</a>';
 			$documentation_link = '<a href="https://realhomes.io/documentation/currency-switcher/" target="_blank">' . esc_html__( 'Documentation', RCS_TEXT_DOMAIN ) . '</a>';
 
 			// Placing links in start

@@ -137,9 +137,9 @@ class Realhomes_Currency_Switcher {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-realhomes-currency-switcher-admin.php';
 
 		/**
-		 * The class responsible for defining the plugin settings page.
+		 * The class responsible for adding currency switcher settings to easy real estate settings.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-realhomes-currency-switcher-settings.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-realhomes-currency-switcher-ere-settings.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
@@ -207,13 +207,8 @@ class Realhomes_Currency_Switcher {
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
-		$plugin_settings = new Realhomes_Currency_Switcher_Settings();
-
-		$this->loader->add_action( 'admin_init', $plugin_settings, 'register_settings' );
-		$this->loader->add_action( 'admin_menu', $plugin_settings, 'settings_page_menu', 11 );
-
 		$plugin_admin = new Realhomes_Currency_Switcher_Admin( $this->get_plugin_name(), $this->get_version() );
-
+		
 		$this->loader->add_action( 'realhomes_update_currencies', $plugin_admin, 'update_currencies_rates' );
 		$this->loader->add_action( 'wp_ajax_nopriv_switch_currency', $plugin_admin, 'switch_current_currency' );
 		$this->loader->add_action( 'wp_ajax_switch_currency', $plugin_admin, 'switch_current_currency' );
