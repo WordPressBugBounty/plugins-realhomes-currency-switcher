@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: RealHomes Currency Switcher\n"
-"POT-Creation-Date: 2026-04-10 11:09+0500\n"
+"POT-Creation-Date: 2026-05-21 18:16+0500\n"
 "PO-Revision-Date: 2020-05-20 18:11+0500\n"
 "Last-Translator: \n"
 "Language-Team: InspiryThemes info@inspirythemes.com\n"
