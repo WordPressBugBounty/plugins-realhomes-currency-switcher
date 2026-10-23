@@ -154,5 +154,3 @@ No, this plugin works only with [RealHomes WordPress real estate theme.](https:/
 
 = 1.0.0 =
 * Initial Release.
-
-radcbb5agy5cvpi7nhrzaehf2emxfdg7
